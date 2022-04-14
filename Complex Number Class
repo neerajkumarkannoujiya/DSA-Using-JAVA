@@ -1,0 +1,65 @@
+public class ComplexNumbers {
+    private int realPart;
+    private int imaginaryPart;
+    
+    public ComplexNumbers(int realPart,int imaginaryPart){
+        this.realPart = realPart;
+        this.imaginaryPart = imaginaryPart;
+        
+    }
+        
+    public void plus(ComplexNumbers c2){
+        this.realPart = this.realPart + c2.realPart;
+        this.imaginaryPart = this.imaginaryPart + c2.imaginaryPart;
+        
+    }
+    
+    public void multiply(ComplexNumbers C2){
+        int r1 = this.realPart * C2.realPart - this.imaginaryPart * C2.imaginaryPart;
+        this.imaginaryPart = this.realPart * C2.imaginaryPart + this.imaginaryPart * C2.realPart;
+        this.realPart = r1;
+        
+    }
+    
+    public void print(){
+        System.out.println(realPart + " + i"+ imaginaryPart);
+    }
+	// Complete this class
+	
+}
+
+
+import java.util.Scanner;
+
+public class Runner {
+
+	public static void main(String[] args) {
+		Scanner s = new Scanner(System.in);
+
+		int real1 = s.nextInt();
+		int imaginary1 = s.nextInt();
+
+		int real2 = s.nextInt();
+		int imaginary2 = s.nextInt();
+
+		ComplexNumbers c1 = new ComplexNumbers(real1, imaginary1);
+		ComplexNumbers c2 = new ComplexNumbers(real2, imaginary2);
+
+		int choice = s.nextInt();
+
+		 
+		if(choice == 1) {
+			// Add
+			c1.plus(c2);
+			c1.print();
+		}
+		else if(choice == 2) {
+			// Multiply
+			c1.multiply(c2);
+			c1.print();
+		}
+		else {
+			return;
+		}
+	}
+}
