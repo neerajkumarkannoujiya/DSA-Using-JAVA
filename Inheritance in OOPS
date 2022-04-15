@@ -1,0 +1,52 @@
+package vehicle;
+
+public class Vehicle {
+    public String color;
+    private int maxSpeed;
+
+    public int getMaxSpeed(){
+        return maxSpeed;
+    }
+
+    public void setMaxSpeed(int maxSpeed){
+        this.maxSpeed=maxSpeed;
+    }
+    public void print(){
+        System.out.println("Vehicle Color : " + color);
+        System.out.println("Vehicle Speed : " + maxSpeed);
+    }
+}
+
+
+package vehicle;
+
+public class Car extends Vehicle {
+    int numGears;
+    boolean isConvertable;
+    public void printCar(){
+        System.out.println("Car Color : " + color);
+        System.out.println("Car MaxSpeed : " + getMaxSpeed());
+        System.out.println("Car numGears : " + numGears);
+        System.out.println("Car is Convertible : " + isConvertable);
+    }
+}
+
+package vehicle;
+
+public class VehicleUse {
+    public static void main(String[] args){
+        Vehicle v = new Vehicle();
+        v.color = "Black";
+        v.setMaxSpeed(10);
+        v.print();
+
+        Car c = new Car();
+        c.numGears = 10;
+        c.color="black";
+        c.print();
+        c.setMaxSpeed(100);
+        c.printCar();
+
+    }
+}
+
