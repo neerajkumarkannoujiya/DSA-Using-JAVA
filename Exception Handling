@@ -1,0 +1,98 @@
+package Exceptions;
+
+class ZeroDenominatorException extends Exception {
+}
+
+
+class Fraction {
+    private int numerator;
+    private int denominator;
+
+    private void simplify() {
+        int gcd = 1;
+        int smaller = Math.min(numerator,denominator);
+        for (int i = 2; i<=smaller;i++){
+            if(numerator%i==0 && denominator%i==0){
+                gcd=i;
+            }
+        }
+        numerator=numerator/gcd;
+        denominator=denominator/gcd;
+    }
+
+    public Fraction(int numerator,int denominator){
+        this.numerator=numerator;
+        this.denominator=denominator;
+        simplify();
+    }
+
+    public int getNumerator(){
+        return numerator;
+
+    }
+    public int getDenominator(){
+        return denominator;
+    }
+    public void setNumerator(int n){
+        this.numerator=n;
+        simplify();
+    }
+    public void setDenominator(int d) throws ZeroDenominatorException {
+        if(d==0) {
+            ZeroDenominatorException e = new ZeroDenominatorException();
+            throw e;
+        }
+        this.denominator=d;
+        simplify();
+    }
+    public void print(){
+        if(denominator==1){
+            System.out.println(numerator);
+        }
+        else{
+            System.out.println(numerator + "/" + denominator);
+        }
+    }
+
+}
+
+
+class fractionUse {
+    public static void main(String[] args){
+        Fraction f1 = new Fraction(12,4);
+        f1.print();
+        try {
+            f1.setDenominator(0);
+        } catch (ZeroDenominatorException e){
+            System.out.println("Denominator cant be Zero");
+            System.out.println(e);
+        }
+        f1.print();
+        f1.setNumerator(4);
+        f1.print();
+
+        Fraction f2 = new Fraction(8,2);
+        f1.print();
+        f2.print();
+
+    }
+}
+
+
+
+
+
+
+'''
+
+OUTPUT:
+
+
+3
+Denominator cant be Zero
+Exceptions.ZeroDenominatorException
+3
+4
+4
+4
+'''
