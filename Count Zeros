@@ -1,0 +1,41 @@
+
+public class solution {
+    
+
+    public static int zerosRec(int input){
+        if (input==0){
+            return 1;
+        }
+        if(input<10){
+            return 0;
+        }
+        else{
+           return zerosRec(input/10) + zerosRec(input%10);
+        }
+        
+        
+    }
+    
+	public static int countZerosRec(int input){
+		// Write your code here
+       
+       int result = zerosRec(input);
+        return result;
+        
+    
+    }
+    
+    
+}
+
+
+
+import java.util.Scanner;
+
+public class runner {
+	public static void main(String[] args) {
+		Scanner s = new Scanner(System.in);
+		int n = s.nextInt();
+		System.out.println(solution.countZerosRec(n));
+	}
+}
