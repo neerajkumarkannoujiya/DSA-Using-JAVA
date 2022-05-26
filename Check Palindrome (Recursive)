@@ -1,0 +1,33 @@
+public class solution {
+    public static String reverse(String input,int index)
+    {
+        if(index==input.length())
+            return "" ;
+        String str=reverse(input,index+1);
+        str=str+input.charAt(index);
+        return str;
+    }
+
+	public static boolean isStringPalindrome(String input) {
+		// Write your code here
+        String str=reverse(input,0);
+        if(str.equals(input))
+            return true;
+        else
+            return false;
+            
+
+	}
+}
+
+
+
+import java.util.Scanner;
+
+public class runner {
+	public static void main(String[] args) {
+		Scanner s = new Scanner(System.in);
+		String input = s.nextLine();
+		System.out.println(solution.isStringPalindrome(input));
+	}
+}
