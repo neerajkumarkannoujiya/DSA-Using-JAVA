@@ -1,0 +1,41 @@
+public class Solution {
+    
+    
+    public static String remove(String s,int index){
+        if(s.length()==1){
+            return s;
+        }
+        String ans = "";
+        if(s.charAt(index)!=s.charAt(index+1)){
+            ans = ans + s.charAt(index);
+            index++;
+        }else{
+            index = index+1;
+        }
+        String result = remove(s.substring(1),0);
+        return ans + result;
+        
+    }
+    
+	public static String removeConsecutiveDuplicates(String s) {
+		// Write your code here
+        String ans = remove(s,0);
+        return ans;
+
+	}
+
+}
+
+
+
+OUTPUT :-
+
+Sample Input 1 :
+aabccba
+Sample Output 1 :
+abcba
+
+Sample Input 2 :
+xxxyyyzwwzzz
+Sample Output 2 :
+xyzwz
