@@ -1,0 +1,58 @@
+import java.util.*;
+public class solution {
+
+	public static int maximumProfit(int budget[]) {
+		// Write your code here
+        int max=0;
+        Arrays.sort(budget);
+        for(int i = 0;i<budget.length;i++){
+            int profit=budget[i];
+            int count=budget.length-i;
+            if(profit*count>max){
+                max=profit*count;
+            }
+        }
+        return max;
+
+	}
+
+}
+
+
+
+import java.util.Scanner;
+
+public class runner {
+	
+	public static void main(String[] args) {
+		Scanner s = new Scanner(System.in);
+		int n = s.nextInt();
+		int input[] = new int[n];
+		for(int i=0;i<n;i++)
+			input[i] = s.nextInt();
+		
+		System.out.println(solution.maximumProfit(input));
+	}
+
+}
+
+
+
+OUTPUT:-
+
+Sample Input 1 :
+4
+30 20 53 14
+Sample Output 1 :
+60
+Sample Output 1 Explanation :
+Price of your app should be Rs. 20 or Rs. 30. For both prices, you can get the profit Rs. 60.
+
+
+Sample Input 2 :
+5
+34 78 90 15 67
+Sample Output 2 :
+201
+Sample Output 2 Explanation :
+Price of your app should be Rs. 67. You can get the profit Rs. 201 (i.e. 3 * 67).
