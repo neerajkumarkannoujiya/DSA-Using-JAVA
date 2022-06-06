@@ -1,0 +1,53 @@
+public class solution {
+
+    
+    public static void printKeypad(int input,String output,String options[]){
+        if(input==0 || input==1){
+            System.out.println(output);
+            return;
+        }
+        int last = input%10;
+        String s1 = options[last];
+        for(int i =0;i<s1.length();i++){
+            printKeypad(input/10,s1.charAt(i)+output,options);
+        }
+    }
+    
+	public static void printKeypad(int input){
+		// Write your code here
+        String output = "";
+        String []options = {"","","abc","def","ghi","jkl","mno","pqrs","tuv","wxyz"};
+        printKeypad(input,output,options);
+		
+	}
+}
+
+
+
+import java.util.Scanner;
+
+public class runner {
+	
+	public static void main(String[] args) {
+		Scanner s = new Scanner(System.in);
+		int input = s.nextInt();
+		solution.printKeypad(input);
+	}
+}
+
+
+
+OUTPUT:-
+
+Sample Input:
+23
+Sample Output:
+ad
+ae
+af
+bd
+be
+bf
+cd
+ce
+cf
