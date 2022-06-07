@@ -1,0 +1,85 @@
+public class solution {
+
+	// Return a 2D array that contains all the subsets
+    
+    public static int[][] subsetHelper(int input[],int index){
+        if(index==input.length){
+            int[][] output = new int[1][0];
+            return output;
+        }
+        int[][] smallerOutput = subsetHelper(input,index+1);
+        int[][] output = new int [2*smallerOutput.length][];
+        int k =0;
+        for(int i = 0; i<smallerOutput.length;i++){
+            output[k]=new int[smallerOutput[i].length];
+            
+            for(int j = 0;j<smallerOutput[i].length;j++){
+                output[k][j] = smallerOutput[i][j];
+            }
+            k++;
+        }
+        for(int i = 0;i<smallerOutput.length;i++){
+            output[k]=new int[smallerOutput[i].length+1];
+            output[k][0]= input[index];
+            for(int j =1; j<=smallerOutput[i].length;j++){
+                output[k][j] = smallerOutput[i][j-1];
+            }
+            k++;
+        }
+        return output;
+    }
+    
+    
+	public static int[][] subsets(int input[]) {
+		// Write your code here
+        return subsetHelper(input,0);
+
+	}
+}
+
+
+
+import java.util.Scanner;
+
+public class runner {
+	
+	public static int[] takeInput() {
+		Scanner s = new Scanner(System.in);
+		int size = s.nextInt();
+		int arr[] = new int[size];
+		for (int i = 0; i < size; i++) {
+			arr[i] = s.nextInt();
+		}
+		return arr;
+	}
+	
+	public static void main(String[] args) {
+		int[] input = takeInput();
+		int output[][] = solution.subsets(input);
+		for(int i = 0; i < output.length; i++) {
+			for(int j = 0; j < output[i].length; j++) {
+				System.out.print(output[i][j] + " ");
+			}
+			System.out.println();
+		}
+	}
+}
+
+
+
+
+OUTPUT:-
+
+Sample Input:
+3
+15 20 12
+
+Sample Output:
+[] (this just represents an empty array, don't worry about the square brackets)
+12 
+20 
+20 12 
+15 
+15 12 
+15 20 
+15 20 12 
