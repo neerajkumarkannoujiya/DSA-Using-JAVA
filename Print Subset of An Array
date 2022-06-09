@@ -1,0 +1,51 @@
+public class solution {
+    
+	public static void printSubsets(int input[] ,int startIndex, int output[]) {
+        // Base case
+        if (startIndex == input.length){
+            for (int i: output){
+                System.out.print(i + " ");
+            }
+            System.out.println();
+            return;
+        }
+
+        // include element in subset
+        int[] newOutput = new int[output.length+1];
+        for (int i = 0; i < output.length; i++){
+            newOutput[i] = output[i];
+        }
+        newOutput[newOutput.length-1] = input[startIndex];
+        printSubsets(input, startIndex+1, newOutput);
+
+        // Don't include element
+        printSubsets(input, startIndex+1, output);
+       
+    }
+    
+    
+	public static void printSubsets(int input[]) {
+        
+		// Write your code here
+        printSubsets(input, 0, new int[0]);
+	}
+}
+
+
+
+
+OUTPUT:-
+
+
+Sample Input:
+3
+15 20 12
+Sample Output:
+[] (this just represents an empty array, don't worry about the square brackets)
+12 
+20 
+20 12 
+15 
+15 12 
+15 20 
+15 20 12 
