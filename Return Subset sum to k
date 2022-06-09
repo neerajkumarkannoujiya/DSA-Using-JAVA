@@ -1,0 +1,85 @@
+public class solution {
+
+	// Return a 2D array that contains all the subsets which sum to k
+	public static int[][] subsetsSumK(int input[], int k) {
+		// Write your code here
+        
+        int[][] smalloutput = subsets(input,0);
+        int m = 0,n = 0;
+        
+        
+        for ( int i = 0; i < smalloutput.length;i++) {
+            int c = 0;
+            for(int j = 0; j < smalloutput[i].length;j++) {
+                c += smalloutput[i][j];
+            }
+            if(c == k)
+            	m++;
+        }
+        
+        int[][] output = new int[m][];
+        
+        for ( int i = 0; i < smalloutput.length;i++) {
+            int c = 0;
+            for(int j = 0; j < smalloutput[i].length;j++) {
+                c += smalloutput[i][j];
+            }
+            if(c == k) {
+                output[n] = new int[smalloutput[i].length];
+                for(int h = 0; h < smalloutput[i].length; h++)
+                	output[n][h] = smalloutput[i][h];
+                n++;
+            }
+        }
+        
+        return output;
+        
+	}
+    
+    private static int[][] subsets(int input[], int index) {
+        
+        if( index == input.length){
+            int[][] a = new int[1][0];
+            return a;
+        }
+        
+        int sa[][] = subsets(input,index+1);
+        
+        int a[][] = new int[2*sa.length][];
+        
+         for (int i = 0; i < sa.length; i++) {
+        	 a[i] = new int[sa[i].length];
+        	 for(int j = 0; j < sa[i].length;j++)
+                 a[i][j] = sa[i][j];
+         }
+             
+         for (int i = 0; i < sa.length;i++){
+        	 a[i+sa.length] = new int[sa[i].length+1];
+             a[i+sa.length][0] = input[index];
+             for(int j = 0; j < sa[i].length;j++) {
+                 a[i+sa.length][j+1] = sa[i][j];
+             }
+         }
+        
+         for (int i = 0; i < a.length; i++)
+        	 for ( int j = 0; j < a[i].length; j++) {
+        		 if(a[i][j] != 0)
+        			 a[i][j] = a[i][j];
+        	 }
+        
+        return a;
+    }
+}
+
+
+
+
+OUTPUT:-
+
+Sample Input :
+9 
+5 12 3 17 1 18 15 3 17 
+6
+Sample Output :
+3 3
+5 1
