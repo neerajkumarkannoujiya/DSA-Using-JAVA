@@ -1,0 +1,53 @@
+public class solution {
+    
+    public static void printAllPossibleCodes(String input,String output) {
+		if(input.length()==0){
+            System.out.println(output);
+            return;
+        }
+      
+          int num1=(int)(input.charAt(0)-'0');
+          char ch= (char)(96+num1);
+          String output_str1=output+ch;
+          printAllPossibleCodes(input.substring(1),output_str1) ;
+        if(input.length()>=2){
+          int num2=((int)(input.charAt(0)-'0'))*10+(int)(input.charAt(1)-'0');
+          if(num2>=10 && num2<=26){
+          char che= (char)(96+num2);
+          String output_str2=output+che;
+          printAllPossibleCodes(input.substring(2),output_str2) ;
+          }
+        }
+
+	}
+
+	public static void printAllPossibleCodes(String input) {
+		// Write your code here
+       
+    printAllPossibleCodes( input,"");
+	}
+}
+
+
+
+
+
+
+
+
+
+
+OUTPUT:-
+
+
+
+Sample Input:
+1123
+Sample Output:
+aabc
+kbc
+alc
+aaw
+kw
+
+
