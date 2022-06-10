@@ -1,0 +1,41 @@
+public class solution {
+	
+	public static String[] permutationOfString(String input){
+		// Write your code here
+        if(input.length()==0){
+            String base[]={""};
+            return base;
+        }
+		String str[]=permutationOfString(input.substring(1));   1
+        String arr[]=new String[str.length*input.length()];
+        int l=0;
+        for(int j=0;j<input.length();j++){
+            
+        for(int i=0;i<str.length;i++){
+           StringBuffer sb=new StringBuffer(str[i]);
+           sb.insert(j,input.charAt(0));
+            arr[l]=sb.toString();
+            l++;
+        }
+        
+        }
+        return arr;
+	}
+	
+}
+
+
+
+
+OUTPUT:-
+
+
+Sample Input :
+abc
+Sample Output :
+abc
+acb
+bac
+bca
+cab
+cba
