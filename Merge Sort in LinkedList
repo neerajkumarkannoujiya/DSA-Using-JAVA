@@ -1,0 +1,170 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+class LinkedListNode<T> {
+    T data;
+    LinkedListNode<T> next;
+    
+    public LinkedListNode(T data) {
+        this.data = data;
+    }
+}
+
+public class Runner {
+    
+    static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    
+    public static LinkedListNode<Integer> takeInput() throws IOException {
+        LinkedListNode<Integer> head = null, tail = null;
+
+        String[] datas = br.readLine().trim().split("\\s");
+
+        int i = 0;
+        while(i < datas.length && !datas[i].equals("-1")) {
+            int data = Integer.parseInt(datas[i]);
+            LinkedListNode<Integer> newNode = new LinkedListNode<Integer>(data);
+            if(head == null) {
+                head = newNode;
+                tail = newNode;
+            }
+            else {
+                tail.next = newNode;
+                tail = newNode;
+            }
+            i += 1;
+        }
+
+        return head;
+    }
+    
+    public static void print(LinkedListNode<Integer> head) {
+        while(head != null) {
+            System.out.print(head.data + " ");
+            head = head.next;
+        }
+        
+        System.out.println();
+    }
+    
+    public static void main(String[] args) throws NumberFormatException, IOException {
+        
+        int t = Integer.parseInt(br.readLine().trim());
+
+        while (t > 0) {
+            
+            LinkedListNode<Integer> head = takeInput();
+
+            LinkedListNode<Integer> newHead = Solution.mergeSort(head);
+            print(newHead);
+            
+            t -= 1;
+        }
+
+    }
+}
+
+
+/*
+
+    Following is the Node class already written for the Linked List
+
+    class LinkedListNode<T> {
+        T data;
+        LinkedListNode<T> next;
+    
+        public LinkedListNode(T data) {
+            this.data = data;
+        }
+    }
+
+*/
+
+
+public class Solution {
+
+    public static LinkedListNode<Integer> mergeSort(LinkedListNode<Integer> head) {
+        if(head==null)
+            return head;
+        if(head.next==null)
+            return head;
+        LinkedListNode<Integer> midNode=findmid(head);
+        LinkedListNode<Integer> h2=midNode.next;
+        midNode.next=null;
+        LinkedListNode<Integer> part1=mergeSort(head);
+        LinkedListNode<Integer> part2=mergeSort(h2);
+        LinkedListNode<Integer> mergedList=mergeTwoList(part1,part2);
+        return mergedList;
+        
+        }
+    private static LinkedListNode<Integer> findmid(LinkedListNode<Integer> head) 
+    {
+        if(head==null)
+            return head;
+        LinkedListNode<Integer> slow=head,fast=head;
+        while(fast.next!=null && fast.next.next!=null){
+            slow=slow.next;
+            fast=fast.next.next;
+        }
+        return slow;
+    }
+    public static LinkedListNode<Integer> mergeTwoList(LinkedListNode<Integer> head1, LinkedListNode<Integer> head2) {
+        if(head1==null)
+            return head2;
+        if(head2==null)
+            return head1;
+        LinkedListNode<Integer> t1=head1,t2=head2,tail=null,head=null;
+        if(t1.data<=t2.data)
+        {
+            head=t1;
+            tail=t1;
+            t1=t1.next;
+        }
+        else
+        {
+            head=t2;
+            tail=t2;
+            t2=t2.next;
+        }
+        while(t1!=null &&t2!=null)
+        {
+            if(t1.data<=t2.data)
+            {
+                tail.next=t1;
+                tail=t1;
+                t1=t1.next;
+            }
+            else
+            {
+                tail.next=t2;
+                tail=tail.next;
+                t2=t2.next;
+            }
+        }
+        if(t1==null)
+            tail.next=t2;
+        if(t2==null)
+            tail.next=t1;
+        return head;
+
+    }
+
+}
+
+
+
+OUTPUT:-
+
+
+Sample Input 1 :
+1
+10 9 8 7 6 5 4 3 -1
+Sample Output 1 :
+3 4 5 6 7 8 9 10 
+ 
+Sample Input 2 :
+2
+-1
+10 -5 9 90 5 67 1 89 -1
+Sample Output 2 :
+-5 1 5 9 10 67 89 90 
