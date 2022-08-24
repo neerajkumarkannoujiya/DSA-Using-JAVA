@@ -1,0 +1,102 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+public class Runner {
+
+    static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+    public static int[] takeInput() throws NumberFormatException, IOException {
+    	int size = Integer.parseInt(br.readLine().trim());
+    	int[] input = new int[size];
+
+    	if (size == 0) {
+    		return input;
+    	}
+
+    	String[] values = br.readLine().trim().split(" ");
+
+    	for(int i = 0; i < size; i++) {
+    		input[i] = Integer.parseInt(values[i]);
+    	}
+
+    	return input;
+    }
+
+    public static void printArray(int[] arr) {
+    	for (int i = 0 ; i < arr.length; i++) {
+    		System.out.print(arr[i] + " ");
+    	}
+
+    	System.out.println();
+    }
+
+    public static void main(String[] args) throws NumberFormatException, IOException {
+    	int[] input = takeInput();
+
+    	int[] output = Solution.stockSpan(input);
+
+    	printArray(output);
+
+    }
+}
+
+
+
+import java.util.*;
+public class Solution {
+
+	public static int[] stockSpan(int[] price) {
+        Stack<Integer> index = new Stack<>();
+        int i=0;
+        int peek=0;
+        int arr[]=new int[price.length];
+        while(i<price.length){
+           if(index.empty()){
+               index.push(i);
+               arr[i]=1;
+           }else{
+               peek=index.peek();
+               if(price[peek]>=price[i]){
+                  index.push(i);
+                  arr[i]=1;
+               }else{
+                  peek=index.peek(); 
+                  while(price[peek]<price[i]&&((!(index.empty()))&&price[peek]!=price[i])){
+                      index.pop();
+                      if(!(index.empty())){
+                      peek=index.peek();
+                      }
+                  }
+                    if(index.empty()){
+                        arr[i]=i+1 ;
+                    }
+                    else
+                   {
+                      arr[i]=i-index.peek();
+                    }
+            // Push this element to stack 
+            index.push(i); 
+               }
+           }
+          i++;
+        }
+        return arr;
+	}
+}
+
+
+
+OUTPUT:
+
+
+Sample Input 1:
+4
+10 10 10 10
+Sample Output 1:
+1 1 1 1 
+Sample Input 2:
+8
+60 70 80 100 90 75 80 120
+Sample Output 2:
+1 2 3 4 1 1 2 8 
