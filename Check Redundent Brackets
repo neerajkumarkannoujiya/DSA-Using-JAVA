@@ -1,0 +1,66 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+public class Runner {
+
+    static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+    public static void main(String[] args) throws NumberFormatException, IOException {
+
+    	String expression = br.readLine().trim();
+    	System.out.println(Solution.checkRedundantBrackets(expression));
+    }
+}
+
+
+import java.util.Stack;
+public class Solution {
+
+	public static boolean checkRedundantBrackets(String expression) {
+		//Your code goes here
+        Stack<Character> st = new Stack<>();
+        char[] str = expression.toCharArray();
+        
+        for(char ch : str){
+            if(ch==')'){
+                char top = st.peek();
+                st.pop();
+                
+                boolean flag = true;
+                
+                while(top != '('){
+                    if(top == '+' || top == '/' || top == '-' || top == '*'){
+                        flag = false;
+                    }
+                    top = st.peek();
+                    st.pop();
+                }
+                
+                if (flag == true){
+                    return true;
+                }
+            }else{
+                st.push(ch);
+            }
+        }
+        return false;
+	}
+}
+
+
+
+
+
+OUTPUT :
+
+Sample Input 1:
+a+(b)+c 
+Sample Output 1:
+true
+Explanation:
+The expression can be reduced to a+b+c. Hence, the brackets are redundant.
+Sample Input 2:
+(a+b)
+Sample Output 2:
+false
