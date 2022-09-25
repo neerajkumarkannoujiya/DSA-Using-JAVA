@@ -10,6 +10,7 @@ public class solution {
             // Check if x is present at mid
             if (input[middle] == element)
                 return middle;
+		
 
 
             // If x greater, ignore left half
