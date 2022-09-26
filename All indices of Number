@@ -8,7 +8,7 @@ public class Solution {
         
         if(startIndex>input.length-1){
             int base[]=new int[sofar];
-            return base;
+            return base; 
         }
         int arr[];
         if(input[startIndex]==x){
