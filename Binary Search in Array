@@ -21,7 +21,6 @@ public class solution {
                 right = middle - 1;
         }
 
-
         // if we reach here, then element was
         // not present
         return -1;
