@@ -11,6 +11,7 @@ class LinkedListNode<T> {
     }
 }
 
+
 public class Runner {
     
     static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
