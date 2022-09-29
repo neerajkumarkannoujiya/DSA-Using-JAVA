@@ -12,7 +12,7 @@ public class solution {
         else{
            return zerosRec(input/10) + zerosRec(input%10);
         }
-        
+       
         
     }
     
