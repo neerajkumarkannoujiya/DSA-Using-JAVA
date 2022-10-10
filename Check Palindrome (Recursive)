@@ -14,8 +14,7 @@ public class solution {
         if(str.equals(input))
             return true;
         else
-            return false;
-              
+            return false;          
   
 	} 
 } 
