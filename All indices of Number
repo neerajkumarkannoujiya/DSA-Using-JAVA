@@ -1,8 +1,6 @@
 import java.util.*;
 public class Solution {
 
-   
-   
          /* First Approach  */
     
     public static int[] allIndexes(int input[], int x,int startIndex,int sofar) {
