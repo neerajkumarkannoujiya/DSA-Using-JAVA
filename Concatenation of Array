@@ -21,6 +21,7 @@ Explanation: The array ans is formed as follows:
 
 
 
+
 class Solution {
     public int[] getConcatenation(int[] nums) {
         int[] ans = new int[2*nums.length];
