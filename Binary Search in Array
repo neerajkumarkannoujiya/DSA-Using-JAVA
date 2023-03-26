@@ -14,7 +14,6 @@ public class solution {
             if (input[middle] < element)
                 left = middle + 1;
 
-
             // If x is smaller, ignore right half
             else
                 right = middle - 1;
